@@ -1,25 +1,22 @@
 language: node_js
 node_js:
-  - lts/*
+- lts/*
 services:
-  - docker
-
+- docker
 before_install:
-  - docker build -t niass/docker-react -f Dockerfile.dev .
-
+- docker build -t niass/docker-react -f Dockerfile.dev .
 scripts:
-  - docker run niass/docker-react npm run test -- --coverage
-
+- docker run niass/docker-react npm run test -- --coverage
 deploy:
   provider: elasticbeanstalk
-  access_key_id:
-    secure: "$AWS_ACCESS_KEY"
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY"
-  region: "us-east-1"
-  app: "docker-react"
-  env: "DockerReact-env"
-  bucket_name: "elasticbeanstalk-us-east-1-840250866699"
-  bucket_path: "docker-react"
+  region: us-east-1
+  app: docker-react
+  env: DockerReact-env
+  bucket_name: elasticbeanstalk-us-east-1-840250866699
+  bucket_path: docker-react
   on:
     branch: main
+env:
+  global:
+  - secure: A9HuTlyS7+SV8D7U54cvwCDrG8EvgcmYwA44l4pFK0Z/d/m8lzRoiSX6aaavLigov1h8qrAgFVtwNLMa2ibUvupNIseOj3qIxKVIdS4Nvtam2AN+z9yjW7NlrnlKP6vjR4+jwOUKYFQVsnNBMY3EZKnQmkYzswVbpJolc++zbb6OqQlCK5Jk8H5cRQRV0KjsdEkxJye9PqB77HWGqYmHMRZCvALBY4C5zRlzTtbPjsudAaGPqI8JGTldbU8ho/u/5CEJkL0caBAuCoHVF2xuFV/geb0uvwTqSUU369cMBVxBq+yGF7tvsFZuCcrAEwRSePBKzHkEcVBwnUHKLDgZ31N8E32sJS0CB08OMD0W2LhRWDeRCt0JMDcumylhoDqBHGFbFl6eIWHLAbzmPDytbeWLfeO2jzMAJciAr68sXgvoLRWZDLSylyaiWdqBcEYXXMoQlW+MRhvUxLHG3mdzRYM2rfFmtcRcAyWs1guZy7Pb8yUYFUfvzIpcYgDIygEb8kLsjBEJtYbHcdnJuQTTqt1xOhYg8SMWvbPi5JG/xA2WAY/I7zyBGJTRBDDVDgFEoyNvo+mXp8AqYzYmf8fMOIvNKw3I0D9VU/ecalnioEsPDSQwmxHc+zS3Xez4AOo2pP7AvHrEz6yRA+67kBy7su6S6el/bzJktvQqhxPrKtc=
+  - secure: Ap5T33W/80d4/x9sR59b+kNY03r+ovBASsDGf4FOBTJSWLD16+e4yF+lTGBC6ISnsv3cb6sJHQctn6CX4mVW/v+8au151+iRgBPfRwumQ0nFIqVNYAPjN82BudgvRRXssevTSVedhW39xMzKVmaxFtbXn5kGg4lOHt/p2MqKvrIEILSGhMn/lsBsj4PzUVmqaverI4jhSrcaSLxfwLKuxbwqAZYY/RH9e3UZnxdS+ZMDPp4AbDOh5el5rhRIzg3oP4EGhIhk9XKYr2h3o8Lfo4c/S0B9BsibKVDEVJR7WA+0vfHfj+xU1TgHUNG2Ey4nb/hR9+SbTQlUXAhBAkAUzWl7F485Ye8soprTM5d8axWh/Vu0ATH90pyCtFkl9XqQx7znAdlfBl4VfoIm0cRj58cty/qH/oCbVpH9mN1fCO78hDXr8ie3RwZkpdfNfMlu4WJrSrfqUq2/8TEUOi6BfbgQkAEUGCq/H7Jn3ZwCOTsqpFwM9uyGc0s8zXP+fk60qGp/MWIskUvRqoqRA2ZQhLZCMH9uMu+CslKvv9syYAr5Dv+S1fv/ohImJH35LzD8/bkDv56P3z6IGiwAnHUSt4D8ykFnC2r+uuz8l4rUYE6P96PuUgDchdJUgSC5R2JwR0wWcv48CoZQTRKvM53MUnvjjIwrDQ0sTCChzYGjWwE=
